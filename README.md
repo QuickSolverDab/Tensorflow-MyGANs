@@ -7,10 +7,9 @@
   * MGGAN
     * https://arxiv.org/abs/1804.04391
   * Recycling discriminator
-    * https://openreview.net/pdf?id=HkgnpiR9Y7
+    * https://openreview.net/pdf?id=HkgnpiR9Y7  
 * Running
   * python main.py --gan_type <Type> --dataset <Dataset> --epoch <Epoch> --batch_size <Batch_size>
-* Code Reference
-  * Thanks to 
+* Code Reference 
   * https://github.com/hwalsuklee/tensorflow-generative-model-collections
   * https://github.com/carpedm20/DCGAN-tensorflow
