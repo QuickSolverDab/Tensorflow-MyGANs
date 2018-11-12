@@ -25,7 +25,7 @@ def parse_args():
     parser.add_argument('--gan_type', type=str, default='GAN',
                         choices=['RFGAN', 'MGGAN', 'ResembledGAN','Recycling_discriminator'] ,
                         help='The type of GAN', required=True)
-    parser.add_argument('--dataset', type=str, default='celebA', choices=['celebA','cat2celebA'],
+    parser.add_argument('--dataset', type=str, default='celebA', choices=['celebA','celebA2celebA'],
                         help='The name of dataset')
     parser.add_argument('--epoch', type=int, default=30, help='The number of epochs to run')
     parser.add_argument('--batch_size', type=int, default=128, help='The size of batch')

@@ -51,8 +51,8 @@ class MGGAN(object):
             self.learning_rate_GAN  = 2e-4
             self.beta1 = 0.5
             # load data list
-            train_dir = "./../../dataset/CelebA/splits/train/"
-            test_dir  = "./../../dataset/CelebA/splits/test/"
+            train_dir = # put train data directory here
+            test_dir  = # put train data directory here
             self.train_list = glob(train_dir+"*.jpg")
             self.test_list = glob(test_dir+"*.jpg")
             data_num = len(self.train_list)

@@ -49,8 +49,8 @@ class RFGAN(object):
             self.ge_iter = 2 #the num of generator updates per discriminator update
 
             # load data list
-            train_dir = "./../../dataset/CelebA/splits/train/"
-            test_dir  = "./../../dataset/CelebA/splits/test/"
+            train_dir = # put train data directory here
+            test_dir  = # put train data directory here
             self.train_list = glob(train_dir+"*.jpg")
             self.test_list  = glob(test_dir+"*.jpg")
             self.train_list = self.train_list

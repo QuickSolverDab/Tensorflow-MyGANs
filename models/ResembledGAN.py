@@ -28,7 +28,7 @@ class ResembledGAN(object):
         self.vis_num = 2
         self.sample_num = 64  # number of generated images to be saved
 
-        if dataset_name == 'cat2celebA':
+        if dataset_name == 'celebA2celebA':
             self.input_height = 64
             self.input_width = 64
             self.output_height = 64
@@ -63,15 +63,18 @@ class ResembledGAN(object):
             self.meanB = 0
 
             # load data list
-            trainA_dir = "./../../dataset/CelebA/splits/train/"
-            trainB_dir = "./../../dataset/CelebA/splits/train/" #"./../../dataset/CAT/train/"
-            testA_dir  = "./../../dataset/CelebA/splits/test/"
-            testB_dir  = "./../../dataset/CelebA/splits/test/" #"./../../dataset/CAT/test/"
+            trainA_dir = # put train data directory here
+            trainB_dir = # put train data directory here
+            testA_dir  = # put train data directory here
+            testB_dir  = # put train data directory here
             self.trainA_list = glob(trainA_dir+"*.jpg")
             self.trainB_list = glob(trainB_dir+"*.jpg")
             self.testA_list  = glob(testA_dir+"*.jpg")
             self.testB_list  = glob(testB_dir+"*.jpg")
             # A-B
+            # if the number of data is different between two dataset,
+            # it shoulld be need to match them.
+            # If A < B, we could adjust them as following
             data_num = len(self.trainA_list)
             self.trainA_list = self.trainA_list[:data_num]
             self.trainB_list = self.trainB_list[:data_num]
@@ -369,7 +372,7 @@ class ResembledGAN(object):
             for pre_idx in range(0, self.num_batches):
                 if (pre_idx+1)*self.batch_size <= len(self.trainA_list):
                     batch_imagesA, noisy_batchA = load_CelebA(self.trainA_list[pre_idx*self.batch_size:(pre_idx+1)*self.batch_size],self.batch_size, self.input_height, self.input_width, self.c_dim )
-                    batch_imagesB, noisy_batchB =    norm_img(self.trainB_list[pre_idx*self.batch_size:(pre_idx+1)*self.batch_size],self.batch_size, self.input_height, self.input_width, self.c_dim )
+                    batch_imagesB, noisy_batchB = load_CelebA(self.trainB_list[pre_idx*self.batch_size:(pre_idx+1)*self.batch_size],self.batch_size, self.input_height, self.input_width, self.c_dim )
                 else:
                     pass
                 # Prioir Distribution and Random Noise Distribution
@@ -395,9 +398,9 @@ class ResembledGAN(object):
             for idx in range(start_batch_id, self.num_batches):
                 if (idx+1)*self.batch_size <= len(self.trainA_list):
                     batch_imagesA, noisy_batchA = load_CelebA(self.trainA_list[idx*self.batch_size:(idx+1)*self.batch_size],self.batch_size, self.input_height, self.input_width, self.c_dim )
-                    batch_imagesB, noisy_batchB =    norm_img(self.trainB_list[idx*self.batch_size:(idx+1)*self.batch_size],self.batch_size, self.input_height, self.input_width, self.c_dim )
+                    batch_imagesB, noisy_batchB = load_CelebA(self.trainB_list[idx*self.batch_size:(idx+1)*self.batch_size],self.batch_size, self.input_height, self.input_width, self.c_dim )
                 else:
-                    pass #batch_images, noisy_batch = load_CelebA(self.train_list[idx*self.batch_size:])
+                    pass
                 # Prioir Distribution and Random Noise Distribution
                 if self.noise_dist == 'Uniform':
                     batch_noise = np.random.uniform(-1, 1, [self.batch_size, self.z_dim])
@@ -434,7 +437,7 @@ class ResembledGAN(object):
                         elif self.noise_dist == 'Normal':
                             batch_noise = np.random.normal(0.0,1.0, [self.batch_size, self.z_dim])
                         test_imagesA, test_noisy_batchA = load_CelebA(self.testA_list[batch_idx*self.batch_size:(batch_idx+1)*self.batch_size],self.batch_size, self.input_height, self.input_width, self.c_dim )
-                        test_imagesB, test_noisy_batchB = norm_img(self.testB_list[batch_idx*self.batch_size:(batch_idx+1)*self.batch_size],self.batch_size, self.input_height, self.input_width, self.c_dim )
+                        test_imagesB, test_noisy_batchB = load_CelebA(self.testB_list[batch_idx*self.batch_size:(batch_idx+1)*self.batch_size],self.batch_size, self.input_height, self.input_width, self.c_dim )
                         "FeedDict"
                         _feed_dict  = {self.inputsA: test_imagesA, self.noisy_inputsA: test_noisy_batchA, self.inputsB: test_imagesB, self.noisy_inputsB: test_noisy_batchB, self.noise: batch_noise}
                         samples_randA,samples_randB = self.sess.run([self.fake_reconA,self.fake_reconAB], feed_dict=_feed_dict)
