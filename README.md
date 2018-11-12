@@ -12,7 +12,7 @@
     
 * Running
   * python main.py --gan_type \<Type\> --dataset \<Dataset\> --epoch \<Epoch\> --batch_size \<Batch_size\>
-  * Gan Type: RFGAN, ResembledGAN, MGGAN, Recycling
+  * Gan Type: RFGAN, ResembledGAN, MGGAN, Recycling_discriminator
   
 * Code Reference 
   * https://github.com/hwalsuklee/tensorflow-generative-model-collections
