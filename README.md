@@ -11,8 +11,14 @@
     * https://openreview.net/pdf?id=HkgnpiR9Y7
     
 * Running
+  * This code is based on CelebA (64 x 64 x 3) dataset
   * python main.py --gan_type \<Type\> --dataset \<Dataset\> --epoch \<Epoch\> --batch_size \<Batch_size\>
   * Gan Type: RFGAN, ResembledGAN, MGGAN, Recycling_discriminator
+
+* Requiisites
+  * Python 2.7
+  * Tensorflow 0.18
+  * Scipy
   
 * Code Reference 
   * https://github.com/hwalsuklee/tensorflow-generative-model-collections
